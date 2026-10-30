@@ -1,5 +1,10 @@
 import streamlit as st
 import json
+import textwrap
+
+def render_html(html_str):
+    st.markdown(textwrap.dedent(html_str).strip(), unsafe_allow_html=True)
+
 
 # Set wide layout and custom page title
 st.set_page_config(
@@ -20,7 +25,7 @@ if "quiz_answers" not in st.session_state:
     st.session_state.quiz_answers = {}
 
 # Custom CSS for rich animations, typography, and slide layouts
-st.markdown("""
+render_html("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800;900&display=swap');
 
@@ -363,7 +368,10 @@ st.markdown("""
         text-align: center;
     }
 </style>
-""", unsafe_allow_html=True)
+""")
+
+
+
 
 # 15 Slides Definition
 SLIDES = [
@@ -562,15 +570,15 @@ def get_svg_amendments():
 # SIDEBAR NAVIGATION & TEAM PROFILE
 # ==========================================
 with st.sidebar:
-    st.markdown("""
+    render_html("""
         <div style="text-align: center; padding: 12px 0;">
             <div style="font-size: 2.2rem; margin-bottom: 6px;">🏛️ 🇮🇩</div>
             <h3 style="color: #ffd166; margin: 0; font-family: 'Cinzel', serif; font-size: 1.15rem;">DINAMIKA UUD 1945</h3>
             <p style="color: #a8dadc; font-size: 0.8rem; margin-top: 4px;">Pendidikan Pancasila Berbasis Web</p>
         </div>
-    """, unsafe_allow_html=True)
+    """)
     
-    st.markdown("---")
+    render_html("---")
     
     # Slide Selection
     slide_titles = [f"{i+1}. {s['title'][:28]}..." for i, s in enumerate(SLIDES)]
@@ -605,15 +613,15 @@ with st.sidebar:
                 <li><b>DAFFA DWI AMANDA</b></li>
             </ol>
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
-    st.markdown("---")
+    render_html("---")
     
     # Speaker Notes Toggle
     st.session_state.show_notes = st.toggle("🎙️ Tampilkan Catatan Presenter", value=st.session_state.show_notes)
     
     # Quick Timeline Jump
-    st.markdown("<p style='font-size: 0.8rem; font-weight: 700; color: #a8dadc; margin-top: 10px;'>⚡ Pintasan Periode:</p>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size: 0.8rem; font-weight: 700; color: #a8dadc; margin-top: 10px;'>⚡ Pintasan Periode:</p>")
     col_sb1, col_sb2 = st.columns(2)
     with col_sb1:
         if st.button("🇮🇩 1945-1949", use_container_width=True):
@@ -649,26 +657,26 @@ with col_nav_l:
         st.session_state.slide -= 1
         st.rerun()
 with col_nav_m:
-    st.markdown(f"""
+    render_html(f"""
         <div style="text-align: center; padding: 4px;">
             <span style="background: rgba(230, 57, 70, 0.2); border: 1px solid rgba(230, 57, 70, 0.4); color: #ffd166; font-size: 0.85rem; font-weight: 700; padding: 4px 18px; border-radius: 999px;">
                 SLIDE {st.session_state.slide + 1} / 15: {curr['title']}
             </span>
         </div>
-    """, unsafe_allow_html=True)
+    """)
 with col_nav_r:
     if st.button("Maju ▶️", disabled=(st.session_state.slide == len(SLIDES) - 1), use_container_width=True):
         st.session_state.slide += 1
         st.rerun()
 
 # SLIDE CONTENT CONTAINER
-st.markdown('<div class="slide-wrapper">', unsafe_allow_html=True)
+render_html('<div class="slide-wrapper">')
 
 # ----------------------------------------------------
 # SLIDE 1: COVER / HALAMAN UTAMA
 # ----------------------------------------------------
 if curr["id"] == 0:
-    st.markdown(f"""
+    render_html(f"""
         <div class="cover-hero">
             {get_svg_garuda()}
             <div class="slide-badge">MATA KULIAH PENDIDIKAN PANCASILA & KEWARGANEGARAAN</div>
@@ -738,21 +746,21 @@ if curr["id"] == 0:
                 <p style="font-size: 0.85rem; color: #a8dadc;">Gunakan tombol navigasi di atas/bawah atau menu di samping untuk berpindah antar slide presentasi.</p>
             </div>
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 # ----------------------------------------------------
 # SLIDE 2: DAFTAR ISI / AGENDA 15 SLIDE
 # ----------------------------------------------------
 elif curr["id"] == 1:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_ag1, col_ag2, col_ag3 = st.columns(3)
     with col_ag1:
-        st.markdown("""
+        render_html("""
             <div class="content-card">
                 <div class="card-icon">1️⃣</div>
                 <div class="card-title">Fase Fondasi & Awal (1945)</div>
@@ -764,9 +772,9 @@ elif curr["id"] == 1:
                     • <b>Slide 5:</b> Analisis Kritis & Maklumat 1945
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_ag2:
-        st.markdown("""
+        render_html("""
             <div class="content-card">
                 <div class="card-icon">2️⃣</div>
                 <div class="card-title">Fase Turbulensi (1949-1959)</div>
@@ -778,9 +786,9 @@ elif curr["id"] == 1:
                     • <b>Slide 10:</b> Periode IV: Demokrasi Terpimpin (Orla)
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_ag3:
-        st.markdown("""
+        render_html("""
             <div class="content-card">
                 <div class="card-icon">3️⃣</div>
                 <div class="card-title">Fase Orba & Reformasi (1966-Kini)</div>
@@ -792,27 +800,27 @@ elif curr["id"] == 1:
                     • <b>Slide 15:</b> Refleksi Nilai Pancasila & Penutup
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     
-    st.markdown("""
+    render_html("""
         <div class="quote-box">
             💡 <b>Catatan Analitis:</b> Dinamika UUD 1945 bukanlah sekadar pergantian teks hukum formal, melainkan dialektika mencari keseimbangan antara stabilitas pemerintahan, kedaulatan rakyat, dan kemurnian cita-cita kemerdekaan bangsa Indonesia.
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 # ----------------------------------------------------
 # SLIDE 3: HAKIKAT & KEDUDUKAN UUD 1945
 # ----------------------------------------------------
 elif curr["id"] == 2:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s3_l, col_s3_r = st.columns([3, 2])
     with col_s3_l:
-        st.markdown("""
+        render_html("""
             <div class="card-grid">
                 <div class="content-card">
                     <div class="card-icon">📜</div>
@@ -843,9 +851,9 @@ elif curr["id"] == 2:
                     </div>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s3_r:
-        st.markdown(f"""
+        render_html(f"""
             <div class="replica-graphic-box">
                 {get_svg_timbangan()}
                 <h4 style="color: #ffd166; margin-top: 14px;">PRINSIP SUPREMASI HUKUM</h4>
@@ -857,21 +865,21 @@ elif curr["id"] == 2:
                     <span class="badge-highlight">Pasal 1 Ayat (3)</span>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ----------------------------------------------------
 # SLIDE 4: PERIODE I (18 AGUSTUS 1945 - 27 DES 1949)
 # ----------------------------------------------------
 elif curr["id"] == 3:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s4_1, col_s4_2 = st.columns([3, 2])
     with col_s4_1:
-        st.markdown("""
+        render_html("""
             <div class="card-grid">
                 <div class="content-card">
                     <div class="card-icon">🏛️</div>
@@ -902,9 +910,9 @@ elif curr["id"] == 3:
                     </div>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s4_2:
-        st.markdown(f"""
+        render_html(f"""
             <div class="replica-graphic-box">
                 {get_svg_parliament()}
                 <h4 style="color: #ffd166; margin-top: 14px;">STRUKTUR KEKUASAAN TRANSISIONAL</h4>
@@ -915,21 +923,21 @@ elif curr["id"] == 3:
                     🔹 <b>Ibukota Sempat Pindah:</b> Jakarta ke Yogyakarta (1946)
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ----------------------------------------------------
 # SLIDE 5: DINAMIKA & PENYIMPANGAN PERIODE I
 # ----------------------------------------------------
 elif curr["id"] == 4:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s5_1, col_s5_2, col_s5_3 = st.columns(3)
     with col_s5_1:
-        st.markdown("""
+        render_html("""
             <div class="content-card" style="border-top: 3px solid #e63946;">
                 <div class="card-icon">📄</div>
                 <div class="card-title">Maklumat Wakil Presiden No. X</div>
@@ -938,9 +946,9 @@ elif curr["id"] == 4:
                     Mengubah kedudukan KNIP dari sekadar pembantu presiden menjadi badan yang diserahi <b>kekuasaan legislatif</b> dan ikut menetapkan GBHN bersama Presiden sebelum terbentuknya DPR/MPR.
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s5_2:
-        st.markdown("""
+        render_html("""
             <div class="content-card" style="border-top: 3px solid #ffd166;">
                 <div class="card-icon">👥</div>
                 <div class="card-title">Maklumat Pemerintah 3 Nov 1945</div>
@@ -949,9 +957,9 @@ elif curr["id"] == 4:
                     Dikeluarkan guna mempertegas citra Indonesia sebagai negara demokratis di mata dunia internasional, memicu lahirnya sistem multi-partai yang sangat dinamis.
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s5_3:
-        st.markdown("""
+        render_html("""
             <div class="content-card" style="border-top: 3px solid #06d6a0;">
                 <div class="card-icon">🔄</div>
                 <div class="card-title">Maklumat 14 November 1945</div>
@@ -960,27 +968,27 @@ elif curr["id"] == 4:
                     Pertanggungjawaban menteri dialihkan dari Presiden kepada Parlemen/Badan Pekerja KNIP. Sutan Sjahrir diangkat menjadi Perdana Menteri pertama RI.
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
         
-    st.markdown("""
+    render_html("""
         <div class="quote-box">
             ⚠️ <b>Telaah Konstitusional:</b> Terjadi pergeseran konstitusional (constitutional convention) dari sistem <b>Presidensial</b> ke sistem <b>Parlementer</b> tanpa melalui amandemen teks resmi UUD 1945. Hal ini merupakan strategi diplomatik meyakinkan Sekutu bahwa Indonesia bukan negara fasis bentukan Jepang.
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 # ----------------------------------------------------
 # SLIDE 6: PERIODE II - KONSTITUSI RIS 1949
 # ----------------------------------------------------
 elif curr["id"] == 5:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s6_l, col_s6_r = st.columns([3, 2])
     with col_s6_l:
-        st.markdown("""
+        render_html("""
             <div class="card-grid">
                 <div class="content-card">
                     <div class="card-icon">🤝</div>
@@ -1011,9 +1019,9 @@ elif curr["id"] == 5:
                     </div>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s6_r:
-        st.markdown("""
+        render_html("""
             <div class="replica-graphic-box">
                 <div style="font-size: 2.8rem; margin-bottom: 8px;">🌐 🧩</div>
                 <h4 style="color: #ffd166;">REPUBLIK INDONESIA SERIKAT</h4>
@@ -1026,19 +1034,19 @@ elif curr["id"] == 5:
                     🚩 <b>Taktik Penjajah:</b> Politik Devide et Impera
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ----------------------------------------------------
 # SLIDE 7: DINAMIKA & PENOLAKAN NEGARA RIS
 # ----------------------------------------------------
 elif curr["id"] == 6:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
-    st.markdown("""
+    render_html("""
         <div class="card-grid">
             <div class="content-card">
                 <div class="card-icon">❌</div>
@@ -1066,21 +1074,21 @@ elif curr["id"] == 6:
         <div class="quote-box" style="margin-top: 24px;">
             💬 <b>Hikmah Sejarah:</b> Eksistensi Konstitusi RIS yang hanya bertahan selama <b>8 bulan</b> membuktikan bahwa konsep negara federal bertentangan dengan semangat Sumpah Pemuda 1928 dan jiwa persatuan Pancasila Sila ke-3.
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 # ----------------------------------------------------
 # SLIDE 8: PERIODE III - UUDS 1950 & DEMOKRASI LIBERAL
 # ----------------------------------------------------
 elif curr["id"] == 7:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s8_1, col_s8_2 = st.columns([3, 2])
     with col_s8_1:
-        st.markdown("""
+        render_html("""
             <div class="card-grid">
                 <div class="content-card">
                     <div class="card-icon">🔄</div>
@@ -1111,9 +1119,9 @@ elif curr["id"] == 7:
                     </div>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s8_2:
-        st.markdown("""
+        render_html("""
             <div class="replica-graphic-box">
                 <div style="font-size: 2.5rem; margin-bottom: 8px;">⏳ 🔄 ⚡</div>
                 <h4 style="color: #ffd166;">KRONIK 7 KABINET UUDS 1950</h4>
@@ -1127,21 +1135,21 @@ elif curr["id"] == 7:
                     7. <b>Djuanda / Karya</b> (Apr 1957 - Jul 1959)
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ----------------------------------------------------
 # SLIDE 9: KEBUNTUAN KONSTITUANTE & DEKRIT PRESIDEN 1959
 # ----------------------------------------------------
 elif curr["id"] == 8:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s9_l, col_s9_r = st.columns([3, 2])
     with col_s9_l:
-        st.markdown("""
+        render_html("""
             <div class="card-grid">
                 <div class="content-card">
                     <div class="card-icon">🛑</div>
@@ -1174,9 +1182,9 @@ elif curr["id"] == 8:
                     </div>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s9_r:
-        st.markdown(f"""
+        render_html(f"""
             <div class="replica-graphic-box">
                 {get_svg_dekrit()}
                 <h4 style="color: #ffd166; margin-top: 10px;">DEKRIT PRESIDEN 5 JULI 1959</h4>
@@ -1184,19 +1192,19 @@ elif curr["id"] == 8:
                     <i>"Kami Presiden Republik Indonesia/Panglima Tertinggi Angkatan Perang... dengan ini menyatakan berlakunya kembali Undang-Undang Dasar 1945..."</i>
                 </p>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ----------------------------------------------------
 # SLIDE 10: PERIODE IV - ORDE LAMA / DEMOKRASI TERPIMPIN
 # ----------------------------------------------------
 elif curr["id"] == 9:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
-    st.markdown("""
+    render_html("""
         <div class="card-grid">
             <div class="content-card" style="border-left: 4px solid #e63946;">
                 <div class="card-icon">👑</div>
@@ -1231,21 +1239,21 @@ elif curr["id"] == 9:
         <div class="quote-box">
             📌 <b>Kesimpulan Evaluatif:</b> Niat mulia kembali ke UUD 1945 terdistorsi menjadi sentralisme kekuasaan absolut pada figur pemimpin besar revolusi, mengabaikan mekanisme pembatasan kekuasaan (*constitutional limits*).
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 # ----------------------------------------------------
 # SLIDE 11: PERIODE V - UUD 1945 MASA ORDE BARU
 # ----------------------------------------------------
 elif curr["id"] == 10:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s11_1, col_s11_2 = st.columns([3, 2])
     with col_s11_1:
-        st.markdown("""
+        render_html("""
             <div class="card-grid">
                 <div class="content-card">
                     <div class="card-icon">🎯</div>
@@ -1276,9 +1284,9 @@ elif curr["id"] == 10:
                     </div>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s11_2:
-        st.markdown("""
+        render_html("""
             <div class="replica-graphic-box">
                 <div style="font-size: 2.8rem; margin-bottom: 8px;">🦅 🔒 📉</div>
                 <h4 style="color: #ffd166;">KARAKTERISTIK ORDE BARU</h4>
@@ -1290,21 +1298,21 @@ elif curr["id"] == 10:
                     🔸 <b>Akhir Era:</b> 21 Mei 1998 Lengsernya Soeharto
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ----------------------------------------------------
 # SLIDE 12: PERIODE VI - ERA REFORMASI & 4 AMANDEMEN
 # ----------------------------------------------------
 elif curr["id"] == 11:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s12_l, col_s12_r = st.columns([3, 2])
     with col_s12_l:
-        st.markdown("""
+        render_html("""
             <div class="card-grid">
                 <div class="content-card">
                     <div class="card-icon">1️⃣</div>
@@ -1335,9 +1343,9 @@ elif curr["id"] == 11:
                     </div>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s12_r:
-        st.markdown(f"""
+        render_html(f"""
             <div class="replica-graphic-box">
                 {get_svg_amendments()}
                 <h4 style="color: #ffd166; margin-top: 10px;">5 KESEPAKATAN DASAR AMANDEMEN</h4>
@@ -1349,21 +1357,21 @@ elif curr["id"] == 11:
                     5. Perubahan dilakukan secara adendum.
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
 # ----------------------------------------------------
 # SLIDE 13: RESTRUKTURISASI KELEMBAGAAN PASCA AMANDEMEN
 # ----------------------------------------------------
 elif curr["id"] == 12:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s13_1, col_s13_2, col_s13_3 = st.columns(3)
     with col_s13_1:
-        st.markdown("""
+        render_html("""
             <div class="content-card" style="border-top: 3px solid #e63946;">
                 <div class="card-icon">⚖️</div>
                 <div class="card-title">Mahkamah Konstitusi (MK)</div>
@@ -1371,9 +1379,9 @@ elif curr["id"] == 12:
                     Hadir sebagai <i>The Guardian of Constitution</i> dan pelindung hak asasi warga negara. Berwenang menguji UU terhadap UUD, memutus sengketa kewenangan lembaga negara, memutus pembubaran parpol, dan sengketa hasil Pemilu.
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s13_2:
-        st.markdown("""
+        render_html("""
             <div class="content-card" style="border-top: 3px solid #ffd166;">
                 <div class="card-icon">🌐</div>
                 <div class="card-title">Bikameral & DPD RI</div>
@@ -1381,9 +1389,9 @@ elif curr["id"] == 12:
                     Parlemen bertransformasi menjadi bikameral lunak (<i>soft bicameralism</i>), di mana MPR terdiri atas anggota DPR (representasi politik rakyat) dan anggota DPD (representasi daerah kepulauan dan provinsi).
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s13_3:
-        st.markdown("""
+        render_html("""
             <div class="content-card" style="border-top: 3px solid #06d6a0;">
                 <div class="card-icon">🛡️</div>
                 <div class="card-title">Penguatan Piagam HAM</div>
@@ -1391,9 +1399,9 @@ elif curr["id"] == 12:
                     Konstitusi kini memuat 10 pasal rincian HAM (Pasal 28A hingga 28J) yang menjamin hak hidup, berkeluarga, kepastian hukum yang adil, kebebasan berekspresi, hingga perlindungan dari diskriminasi.
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
-    st.markdown("""
+    render_html("""
         <div class="content-card" style="margin-top: 20px;">
             <div class="card-title" style="color: #ffd166;">🔄 MATRIKS PERUBAHAN ANATOMI UUD 1945</div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 10px; font-size: 0.88rem;">
@@ -1424,19 +1432,19 @@ elif curr["id"] == 12:
                 </div>
             </div>
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 # ----------------------------------------------------
 # SLIDE 14: TANTANGAN KONSTITUSI DI ERA KONTEMPORER
 # ----------------------------------------------------
 elif curr["id"] == 13:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
-    st.markdown("""
+    render_html("""
         <div class="card-grid">
             <div class="content-card">
                 <div class="card-icon">⚖️</div>
@@ -1471,21 +1479,21 @@ elif curr["id"] == 13:
         <div class="quote-box" style="margin-top: 24px;">
             💬 <b>Refleksi Kritis:</b> Konstitusi yang kokoh bukan hanya diukur dari indahnya redaksional pasal-pasal di atas kertas, melainkan sejauh mana budaya hukum (<i>legal culture</i>) dan integritas moral para penyelenggara negara mampu menjunjung nilai-nilai kejujuran dan keadilan konstitusional.
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 # ----------------------------------------------------
 # SLIDE 15: KESIMPULAN, REFLEKSI PANCASILA & PENUTUP
 # ----------------------------------------------------
 elif curr["id"] == 14:
-    st.markdown(f"""
+    render_html(f"""
         <div class="slide-badge">{curr['badge']}</div>
         <div class="slide-title">{curr['title']}</div>
         <div class="slide-subtitle">{curr['subtitle']}</div>
-    """, unsafe_allow_html=True)
+    """)
     
     col_s15_1, col_s15_2 = st.columns([3, 2])
     with col_s15_1:
-        st.markdown("""
+        render_html("""
             <div class="content-card" style="border-left: 4px solid #ffd166; margin-bottom: 16px;">
                 <div class="card-title" style="color: #ffd166; font-size: 1.25rem;">✨ Sintesis Akhir Kelompok</div>
                 <div class="card-text" style="font-size: 0.95rem; line-height: 1.7;">
@@ -1507,9 +1515,9 @@ elif curr["id"] == 14:
                     <div class="card-text" style="font-size: 0.82rem; margin-top: 4px;">Demokrasi permusyawaratan demi mewujudkan keadilan sosial merata.</div>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
     with col_s15_2:
-        st.markdown("""
+        render_html("""
             <div class="replica-graphic-box" style="border: 1px solid rgba(255,209,102,0.3); background: rgba(255,209,102,0.04);">
                 <div style="font-size: 3rem; margin-bottom: 8px;">🙏 🇮🇩 🎓</div>
                 <h3 style="color: #ffd166; font-family: 'Cinzel', serif; margin-bottom: 6px;">TERIMA KASIH!</h3>
@@ -1522,9 +1530,9 @@ elif curr["id"] == 14:
                     <i>Mata Kuliah: Pendidikan Pancasila</i>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """)
 
-st.markdown('</div>', unsafe_allow_html=True) # End slide-wrapper
+render_html('</div>') # End slide-wrapper
 
 # ==========================================
 # SPEAKER / PRESENTER NOTES (IF TOGGLED)
@@ -1548,17 +1556,17 @@ SPEAKER_NOTES = [
 ]
 
 if st.session_state.show_notes:
-    st.markdown(f"""
+    render_html(f"""
         <div class="speaker-notes">
             <b>🎙️ Panduan Narasi Presenter (Slide {st.session_state.slide + 1}):</b><br>
             <i>"{SPEAKER_NOTES[st.session_state.slide]}"</i>
         </div>
-    """, unsafe_allow_html=True)
+    """)
 
 # ==========================================
 # BOTTOM CONTROLS & INTERACTIVE FEATURES
 # ==========================================
-st.markdown("<br>", unsafe_allow_html=True)
+render_html("<br>")
 col_b1, col_b2, col_b3, col_b4, col_b5 = st.columns([1, 1, 2, 1, 1])
 
 with col_b1:
