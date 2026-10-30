@@ -372,6 +372,31 @@ render_html("""
         min-height: 280px;
         text-align: center;
     }
+
+    /* Hide Streamlit Default UI Elements & Manage App Badge */
+    #MainMenu {visibility: hidden !important; display: none !important;}
+    footer {visibility: hidden !important; display: none !important;}
+    header {visibility: hidden !important;}
+    
+    /* Hide Manage App / Host Watermark / Viewer Toolbar in Streamlit Cloud */
+    [data-testid="stStatusWidget"] {display: none !important;}
+    .viewerBadge_container__1QSob,
+    .viewerBadge_link__1S137,
+    [class*="viewerBadge"],
+    [class*="manageApp"],
+    [data-testid="manage-app-button"],
+    button[title="Manage app"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    /* Extra safety overlay to hide the bottom right iframe / button */
+    div:has(> button[title="Manage app"]) {
+        display: none !important;
+    }
+
 </style>
 """)
 
