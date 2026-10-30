@@ -571,6 +571,25 @@ def get_svg_amendments():
     </svg>
     """
 
+
+# Navigation Callbacks for 100% Reliability
+def next_slide():
+    if st.session_state.slide < len(SLIDES) - 1:
+        st.session_state.slide += 1
+
+def prev_slide():
+    if st.session_state.slide > 0:
+        st.session_state.slide -= 1
+
+def jump_to_slide(i):
+    st.session_state.slide = i
+
+def on_sidebar_change():
+    st.session_state.slide = st.session_state.sidebar_picker
+
+def on_bottom_change():
+    st.session_state.slide = st.session_state.bottom_picker
+
 # ==========================================
 # SIDEBAR NAVIGATION & TEAM PROFILE
 # ==========================================
@@ -587,16 +606,14 @@ with st.sidebar:
     
     # Slide Selection
     slide_titles = [f"{i+1}. {s['title'][:28]}..." for i, s in enumerate(SLIDES)]
-    selected_slide = st.selectbox(
+    st.selectbox(
         "📑 Pilih Halaman Menu:",
         options=range(len(SLIDES)),
         format_func=lambda x: slide_titles[x],
         index=st.session_state.slide,
-        key="sidebar_select"
+        key="sidebar_picker",
+        on_change=on_sidebar_change
     )
-    if selected_slide != st.session_state.slide:
-        st.session_state.slide = selected_slide
-        st.rerun()
 
     # Progress bar
     progress = (st.session_state.slide + 1) / len(SLIDES)
@@ -629,25 +646,13 @@ with st.sidebar:
     render_html("<p style='font-size: 0.8rem; font-weight: 700; color: #a8dadc; margin-top: 10px;'>⚡ Pintasan Periode:</p>")
     col_sb1, col_sb2 = st.columns(2)
     with col_sb1:
-        if st.button("🇮🇩 1945-1949", use_container_width=True):
-            st.session_state.slide = 3
-            st.rerun()
-        if st.button("⚖️ UUDS 1950", use_container_width=True):
-            st.session_state.slide = 7
-            st.rerun()
-        if st.button("🦅 Orde Baru", use_container_width=True):
-            st.session_state.slide = 10
-            st.rerun()
+        st.button("🇮🇩 1945-1949", on_click=jump_to_slide, args=(3,), key="btn_p1", use_container_width=True)
+        st.button("⚖️ UUDS 1950", on_click=jump_to_slide, args=(7,), key="btn_p3", use_container_width=True)
+        st.button("🦅 Orde Baru", on_click=jump_to_slide, args=(10,), key="btn_p5", use_container_width=True)
     with col_sb2:
-        if st.button("🌐 RIS 1949", use_container_width=True):
-            st.session_state.slide = 5
-            st.rerun()
-        if st.button("📜 Orde Lama", use_container_width=True):
-            st.session_state.slide = 9
-            st.rerun()
-        if st.button("✨ Reformasi", use_container_width=True):
-            st.session_state.slide = 11
-            st.rerun()
+        st.button("🌐 RIS 1949", on_click=jump_to_slide, args=(5,), key="btn_p2", use_container_width=True)
+        st.button("📜 Orde Lama", on_click=jump_to_slide, args=(9,), key="btn_p4", use_container_width=True)
+        st.button("✨ Reformasi", on_click=jump_to_slide, args=(11,), key="btn_p6", use_container_width=True)
 
 # ==========================================
 # MAIN SLIDE DISPLAY LOGIC
@@ -658,9 +663,7 @@ curr = SLIDES[st.session_state.slide]
 # TOP PROGRESS INDICATOR BAR
 col_nav_l, col_nav_m, col_nav_r = st.columns([1, 4, 1])
 with col_nav_l:
-    if st.button("◀️ Mundur", disabled=(st.session_state.slide == 0), use_container_width=True):
-        st.session_state.slide -= 1
-        st.rerun()
+    st.button("◀️ Mundur", disabled=(st.session_state.slide == 0), on_click=prev_slide, key="btn_top_prev", use_container_width=True)
 with col_nav_m:
     render_html(f"""
         <div style="text-align: center; padding: 4px;">
@@ -670,9 +673,7 @@ with col_nav_m:
         </div>
     """)
 with col_nav_r:
-    if st.button("Maju ▶️", disabled=(st.session_state.slide == len(SLIDES) - 1), use_container_width=True):
-        st.session_state.slide += 1
-        st.rerun()
+    st.button("Maju ▶️", disabled=(st.session_state.slide == len(SLIDES) - 1), on_click=next_slide, key="btn_top_next", use_container_width=True)
 
 # SLIDE CONTENT CONTAINER
 render_html('<div class="slide-wrapper">')
@@ -1575,37 +1576,28 @@ render_html("<br>")
 col_b1, col_b2, col_b3, col_b4, col_b5 = st.columns([1, 1, 2, 1, 1])
 
 with col_b1:
-    if st.button("⏮️ Halaman Cover", use_container_width=True):
-        st.session_state.slide = 0
-        st.rerun()
+    st.button("⏮️ Cover", on_click=jump_to_slide, args=(0,), key="btn_bot_cover", use_container_width=True)
 
 with col_b2:
-    if st.button("⬅️ Sebelumnya", disabled=(st.session_state.slide == 0), use_container_width=True):
-        st.session_state.slide -= 1
-        st.rerun()
+    st.button("⬅️ Sebelumnya", disabled=(st.session_state.slide == 0), on_click=prev_slide, key="btn_bot_prev", use_container_width=True)
 
 with col_b3:
     # Dropdown Direct Nav
-    new_idx = st.selectbox(
+    st.selectbox(
         "Pilih Menu Cepat:",
         options=range(len(SLIDES)),
         format_func=lambda i: f"Slide {i+1}: {SLIDES[i]['title'][:32]}...",
         index=st.session_state.slide,
+        key="bottom_picker",
+        on_change=on_bottom_change,
         label_visibility="collapsed"
     )
-    if new_idx != st.session_state.slide:
-        st.session_state.slide = new_idx
-        st.rerun()
 
 with col_b4:
-    if st.button("Berikutnya ➡️", disabled=(st.session_state.slide == len(SLIDES) - 1), use_container_width=True):
-        st.session_state.slide += 1
-        st.rerun()
+    st.button("Berikutnya ➡️", disabled=(st.session_state.slide == len(SLIDES) - 1), on_click=next_slide, key="btn_bot_next", use_container_width=True)
 
 with col_b5:
-    if st.button("⏭️ Halaman Akhir", use_container_width=True):
-        st.session_state.slide = len(SLIDES) - 1
-        st.rerun()
+    st.button("⏭️ Akhir", on_click=jump_to_slide, args=(len(SLIDES) - 1,), key="btn_bot_end", use_container_width=True)
 
 # ==========================================
 # INTERACTIVE MINI-QUIZ / KNOWLEDGE CHECK MODAL (EXPANDER)
