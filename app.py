@@ -3,7 +3,12 @@ import json
 import textwrap
 
 def render_html(html_str):
-    st.markdown(textwrap.dedent(html_str).strip(), unsafe_allow_html=True)
+    if not html_str:
+        return
+    # Strip leading whitespace from EVERY line to completely prevent markdown code block detection
+    lines = [line.strip() for line in html_str.splitlines() if line.strip()]
+    cleaned_html = " ".join(lines)
+    st.markdown(cleaned_html, unsafe_allow_html=True)
 
 
 # Set wide layout and custom page title
