@@ -378,6 +378,522 @@ render_html("""
 
 
 
+# Helper Generator for 15 Replica Animated Mini-Videos
+def get_replica_video_card(slide_id):
+    videos = {
+        0: {
+            "title": "KILAS DOKUMENTER: REVOLUSI & LAHIRNYA UUD 1945",
+            "tag": "DOKUMENTER HISTORIS • REPLIKA ARCHIVE",
+            "badge_color": "#e63946",
+            "time": "17 - 18 AGUSTUS 1945",
+            "desc": "Simulasi visual pengibaran Sang Saka Merah Putih di Pegangsaan Timur 56 dan momentum sidang penetapan UUD 1945 oleh PPKI.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="skyGrad" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#2a0845"/>
+                            <stop offset="60%" stop-color="#140b2d"/>
+                            <stop offset="100%" stop-color="#070a1a"/>
+                        </radialGradient>
+                        <linearGradient id="flagRed" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ff0000"/>
+                            <stop offset="50%" stop-color="#cc0000"/>
+                            <stop offset="100%" stop-color="#ff3333"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="400" height="210" fill="url(#skyGrad)"/>
+                    <circle cx="200" cy="90" r="75" fill="#ffd166" opacity="0.12">
+                        <animate attributeName="r" values="70;82;70" dur="4s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="0.08;0.18;0.08" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <!-- Tiang Bendera -->
+                    <rect x="130" y="25" width="5" height="165" fill="#e2e8f0" rx="2"/>
+                    <circle cx="132.5" cy="24" r="5" fill="#ffd166"/>
+                    <!-- Bendera Berkibar Animasi -->
+                    <g>
+                        <path d="M135 30 Q165 24 195 32 T255 30 L255 58 Q225 64 195 56 T135 60 Z" fill="url(#flagRed)">
+                            <animate attributeName="d" values="
+                                M135 30 Q165 24 195 32 T255 30 L255 58 Q225 64 195 56 T135 60 Z;
+                                M135 30 Q165 35 195 26 T255 33 L255 61 Q225 54 195 63 T135 60 Z;
+                                M135 30 Q165 24 195 32 T255 30 L255 58 Q225 64 195 56 T135 60 Z" dur="2.2s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M135 60 Q165 54 195 62 T255 60 L255 88 Q225 94 195 86 T135 90 Z" fill="#ffffff">
+                            <animate attributeName="d" values="
+                                M135 60 Q165 54 195 62 T255 60 L255 88 Q225 94 195 86 T135 90 Z;
+                                M135 60 Q165 65 195 56 T255 63 L255 91 Q225 84 195 93 T135 90 Z;
+                                M135 60 Q165 54 195 62 T255 60 L255 88 Q225 94 195 86 T135 90 Z" dur="2.2s" repeatCount="indefinite"/>
+                        </path>
+                    </g>
+                    <!-- Siluet Tokoh Proklamasi & Garuda -->
+                    <path d="M0 210 L0 185 Q100 175 200 185 Q300 195 400 180 L400 210 Z" fill="#0d1b2a"/>
+                    <circle cx="280" cy="140" r="14" fill="#1b263b"/>
+                    <path d="M265 185 C265 158 295 158 295 185 Z" fill="#1b263b"/>
+                    <circle cx="320" cy="144" r="12" fill="#1b263b"/>
+                    <path d="M308 185 C308 162 332 162 332 185 Z" fill="#1b263b"/>
+                    <text x="200" y="200" fill="#ffd166" font-size="9" font-family="'Cinzel', serif" font-weight="bold" text-anchor="middle" letter-spacing="2">PROKLAMASI & PENGESAHAN UUD 1945</text>
+                </svg>
+            """
+        },
+        1: {
+            "title": "TIMELINE JOURNEY: 6 BABAK DINAMIKA KONSTITUSI",
+            "tag": "INTERACTIVE INFOGRAPHIC ANIMATION",
+            "badge_color": "#ffd166",
+            "time": "1945 - ERA SEKARANG",
+            "desc": "Simulasi alur gerak pulsa garis waktu menyusuri 6 periode metamorfosis tata negara dari revolusi kemerdekaan hingga era digital.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#0a1128"/>
+                    <!-- Path Garis Alur Berdenyut -->
+                    <path d="M30 105 C90 40 130 170 190 105 C250 40 290 170 370 105" stroke="#1d3557" stroke-width="6" fill="none" stroke-linecap="round"/>
+                    <path d="M30 105 C90 40 130 170 190 105 C250 40 290 170 370 105" stroke="#ffd166" stroke-width="3" fill="none" stroke-dasharray="10 8" stroke-linecap="round">
+                        <animate attributeName="stroke-dashoffset" values="100;0" dur="4s" repeatCount="indefinite"/>
+                    </path>
+                    <!-- Titik Stasiun Periode -->
+                    <g transform="translate(45, 85)">
+                        <circle cx="0" cy="0" r="10" fill="#e63946"/>
+                        <circle cx="0" cy="0" r="16" fill="none" stroke="#e63946" opacity="0.6">
+                            <animate attributeName="r" values="10;20;10" dur="2s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.8;0;0.8" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="0" y="24" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">1945</text>
+                    </g>
+                    <g transform="translate(110, 130)">
+                        <circle cx="0" cy="0" r="9" fill="#457b9d"/>
+                        <text x="0" y="22" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">RIS 49</text>
+                    </g>
+                    <g transform="translate(190, 105)">
+                        <circle cx="0" cy="0" r="9" fill="#06d6a0"/>
+                        <text x="0" y="22" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">1950</text>
+                    </g>
+                    <g transform="translate(265, 75)">
+                        <circle cx="0" cy="0" r="9" fill="#e76f51"/>
+                        <text x="0" y="22" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">1959</text>
+                    </g>
+                    <g transform="translate(325, 135)">
+                        <circle cx="0" cy="0" r="9" fill="#f4a261"/>
+                        <text x="0" y="22" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">ORBA</text>
+                    </g>
+                    <g transform="translate(370, 105)">
+                        <circle cx="0" cy="0" r="11" fill="#ffd166"/>
+                        <circle cx="0" cy="0" r="18" fill="none" stroke="#ffd166" opacity="0.8">
+                            <animate attributeName="r" values="11;22;11" dur="1.8s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.9;0;0.9" dur="1.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="0" y="24" fill="#ffd166" font-size="7" font-weight="bold" text-anchor="middle">1999-KINI</text>
+                    </g>
+                </svg>
+            """
+        },
+        2: {
+            "title": "SUPREMASI HUKUM: TIMBANGAN KEADILAN BERAYUN",
+            "tag": "SIMULASI YURIDIS • RECHTSSTAAT",
+            "badge_color": "#06d6a0",
+            "time": "PASAL 1 AYAT (3) UUD 1945",
+            "desc": "Animasi dinamis neraca keadilan berayun melambangkan kedudukan hukum tertinggi yang menyeimbangkan kekuasaan negara dengan hak asasi rakyat.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#0b132b"/>
+                    <!-- Tiang Pusat -->
+                    <rect x="196" y="35" width="8" height="145" fill="#ffd166" rx="3"/>
+                    <rect x="150" y="175" width="100" height="12" fill="#1c2541" stroke="#ffd166" stroke-width="2" rx="4"/>
+                    <circle cx="200" cy="40" r="9" fill="#e63946" stroke="#ffd166" stroke-width="2"/>
+                    <!-- Lengan Neraca Berayun Harmonik -->
+                    <g>
+                        <animateTransform attributeName="transform" type="rotate" values="-6 200 40; 6 200 40; -6 200 40" dur="4s" repeatCount="indefinite" ease="ease-in-out"/>
+                        <line x1="80" y1="40" x2="320" y2="40" stroke="#ffd166" stroke-width="5" stroke-linecap="round"/>
+                        <!-- Cawan Kiri (Kekuasaan Negara) -->
+                        <line x1="100" y1="40" x2="80" y2="105" stroke="#a8dadc" stroke-width="1.8"/>
+                        <line x1="100" y1="40" x2="120" y2="105" stroke="#a8dadc" stroke-width="1.8"/>
+                        <path d="M70 105 Q100 135 130 105 Z" fill="#e63946" opacity="0.85"/>
+                        <text x="100" y="125" fill="#ffffff" font-size="6" font-weight="bold" text-anchor="middle">KEKUASAAN</text>
+                        <!-- Cawan Kanan (Kedaulatan Rakyat) -->
+                        <line x1="300" y1="40" x2="280" y2="105" stroke="#a8dadc" stroke-width="1.8"/>
+                        <line x1="300" y1="40" x2="320" y2="105" stroke="#a8dadc" stroke-width="1.8"/>
+                        <path d="M270 105 Q300 135 330 105 Z" fill="#06d6a0" opacity="0.85"/>
+                        <text x="300" y="125" fill="#070d1e" font-size="6" font-weight="bold" text-anchor="middle">HAK RAKYAT</text>
+                    </g>
+                    <text x="200" y="200" fill="#ffd166" font-size="8" font-family="'Cinzel', serif" font-weight="bold" text-anchor="middle">STAATSFUNDAMENTALNORM & RECHTSSTAAT</text>
+                </svg>
+            """
+        },
+        3: {
+            "title": "ARSIP PPKI: PENGESAHAN DOKUMEN UUD 1945",
+            "tag": "REPLIKA DOKUMEN SEJARAH",
+            "badge_color": "#e63946",
+            "time": "18 AGUSTUS 1945",
+            "desc": "Simulasi efek pembukaan lembaran naskah konstitusi pertama di Gedung Chuo Sangi In (Gedung Pancasila).",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#0d1b2a"/>
+                    <!-- Buku Naskah UUD 1945 Terbuka -->
+                    <g transform="translate(100, 30)">
+                        <rect x="0" y="0" width="95" height="135" rx="4" fill="#f8edeb" stroke="#ffd166" stroke-width="2"/>
+                        <rect x="105" y="0" width="95" height="135" rx="4" fill="#f8edeb" stroke="#ffd166" stroke-width="2"/>
+                        <rect x="94" y="0" width="12" height="135" fill="#b08968"/>
+                        <!-- Garis Teks Naskah Bergetar Tinta Emas -->
+                        <line x1="12" y1="20" x2="82" y2="20" stroke="#e63946" stroke-width="3"/>
+                        <line x1="15" y1="35" x2="80" y2="35" stroke="#415a77" stroke-width="1.8"/>
+                        <line x1="15" y1="48" x2="80" y2="48" stroke="#415a77" stroke-width="1.8"/>
+                        <line x1="15" y1="61" x2="75" y2="61" stroke="#415a77" stroke-width="1.8"/>
+                        <line x1="15" y1="74" x2="80" y2="74" stroke="#415a77" stroke-width="1.8"/>
+                        <line x1="15" y1="87" x2="65" y2="87" stroke="#415a77" stroke-width="1.8"/>
+                        <!-- Halaman Kanan -->
+                        <line x1="117" y1="20" x2="187" y2="20" stroke="#e63946" stroke-width="3"/>
+                        <line x1="120" y1="35" x2="185" y2="35" stroke="#415a77" stroke-width="1.8"/>
+                        <line x1="120" y1="48" x2="185" y2="48" stroke="#415a77" stroke-width="1.8"/>
+                        <line x1="120" y1="61" x2="175" y2="61" stroke="#415a77" stroke-width="1.8"/>
+                        <circle cx="152" cy="100" r="16" fill="#e63946" opacity="0.8">
+                            <animate attributeName="r" values="14;18;14" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="152" y="103" fill="#ffffff" font-size="5" font-weight="bold" text-anchor="middle">PPKI 1945</text>
+                    </g>
+                    <text x="200" y="195" fill="#ffd166" font-size="8" font-family="'Cinzel', serif" font-weight="bold" text-anchor="middle">PENETAPAN 37 PASAL & ATURAN PERALIHAN</text>
+                </svg>
+            """
+        },
+        4: {
+            "title": "PERALIHAN SISTEM: PRESIDENSIAL KE PARLEMENTER",
+            "tag": "DIALEKTIKA STRATEGI DIPLOMASI",
+            "badge_color": "#f4a261",
+            "time": "OKTOBER - NOVEMBER 1945",
+            "desc": "Simulasi perpindahan kendali eksekutif dari Dwi Tunggal Soekarno-Hatta kepada Perdana Menteri Sutan Sjahrir melalui Maklumat No. X.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#14213d"/>
+                    <!-- Kotak Presidensial -->
+                    <rect x="40" y="55" width="120" height="90" rx="8" fill="#1b263b" stroke="#e63946" stroke-width="2"/>
+                    <text x="100" y="85" fill="#e63946" font-size="8" font-weight="bold" text-anchor="middle">PRESIDENSIAL</text>
+                    <text x="100" y="105" fill="#a8dadc" font-size="6" text-anchor="middle">Menteri Bertanggung</text>
+                    <text x="100" y="117" fill="#a8dadc" font-size="6" text-anchor="middle">Jawab ke Presiden</text>
+                    <!-- Panah Transformasi Animasi Berdenyut -->
+                    <g transform="translate(180, 90)">
+                        <path d="M0 10 L30 10 L30 0 L48 15 L30 30 L30 20 L0 20 Z" fill="#ffd166">
+                            <animate attributeName="transform" type="translate" values="0,0; 8,0; 0,0" dur="1.5s" repeatCount="indefinite"/>
+                        </path>
+                        <text x="24" y="-8" fill="#ffd166" font-size="6" font-weight="bold" text-anchor="middle">Maklumat 14 Nov</text>
+                    </g>
+                    <!-- Kotak Parlementer -->
+                    <rect x="240" y="55" width="120" height="90" rx="8" fill="#1b263b" stroke="#06d6a0" stroke-width="2"/>
+                    <text x="300" y="85" fill="#06d6a0" font-size="8" font-weight="bold" text-anchor="middle">PARLEMENTER</text>
+                    <text x="300" y="105" fill="#a8dadc" font-size="6" text-anchor="middle">Perdana Menteri</text>
+                    <text x="300" y="117" fill="#a8dadc" font-size="6" text-anchor="middle">& Kabinet BP-KNIP</text>
+                    <text x="200" y="185" fill="#e2e8f0" font-size="7" text-anchor="middle">KONVENSI KETATANEGARAAN TANPA MERUBAH TEKS UUD</text>
+                </svg>
+            """
+        },
+        5: {
+            "title": "PECAH BELAH FEDERALISME: ERA KONSTITUSI RIS",
+            "tag": "STRATEGI DEVIDE ET IMPERA",
+            "badge_color": "#e76f51",
+            "time": "27 DESEMBER 1949",
+            "desc": "Simulasi pemecahan kepulauan Nusantara menjadi 16 negara bagian/satuan otonom ciptaan Van Mook pasca KMB Den Haag.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#0f172a"/>
+                    <!-- Peta Kepulauan Indonesia Terbelah Puzzle -->
+                    <g opacity="0.85">
+                        <path d="M50 110 Q90 80 130 115 T170 110" stroke="#e63946" stroke-width="8" stroke-linecap="round" fill="none"/>
+                        <text x="90" y="80" fill="#e63946" font-size="6" font-weight="bold">Negara Sumatra Timur</text>
+                        <path d="M140 145 Q170 135 210 150 T250 145" stroke="#ffd166" stroke-width="8" stroke-linecap="round" fill="none"/>
+                        <text x="180" y="175" fill="#ffd166" font-size="6" font-weight="bold">Negara Pasundan / Madura</text>
+                        <path d="M210 95 Q240 70 270 100 T290 85" stroke="#457b9d" stroke-width="9" stroke-linecap="round" fill="none"/>
+                        <path d="M280 115 Q320 85 350 120 T380 110" stroke="#06d6a0" stroke-width="8" stroke-linecap="round" fill="none"/>
+                        <text x="325" y="75" fill="#06d6a0" font-size="6" font-weight="bold">Negara Indonesia Timur</text>
+                    </g>
+                    <!-- Tanda Seru Bahaya Disintegrasi -->
+                    <circle cx="200" cy="50" r="15" fill="#e63946">
+                        <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="200" y="55" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">!</text>
+                    <text x="200" y="198" fill="#ffd166" font-size="8" font-family="'Cinzel', serif" font-weight="bold" text-anchor="middle">REPUBLIK INDONESIA SERIKAT HANYA BERTAHAN 8 BULAN</text>
+                </svg>
+            """
+        },
+        6: {
+            "title": "MOSI INTEGRAL NATSIR: KEMBALINYA PERSATUAN NKRI",
+            "tag": "DIPLOMASI PEMERSATU BANGSA",
+            "badge_color": "#06d6a0",
+            "time": "3 APRIL - 17 AGUSTUS 1950",
+            "desc": "Simulasi penyatuan kembali kepingan negara-negara bagian melebur kembali ke dalam wadah tunggal Republik Indonesia.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#081c15"/>
+                    <!-- Efek Lingkaran Medan Magnet Penyatuan -->
+                    <circle cx="200" cy="95" r="55" fill="none" stroke="#2d6a4f" stroke-width="2" stroke-dasharray="6 4">
+                        <animate attributeName="r" values="30;75;30" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="opacity" values="1;0.2;1" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <!-- Pusat NKRI -->
+                    <circle cx="200" cy="95" r="28" fill="#e63946" stroke="#ffd166" stroke-width="2.5"/>
+                    <text x="200" y="98" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle">NKRI</text>
+                    <!-- Satelit Bagian yang Masuk Kembali -->
+                    <g>
+                        <circle cx="110" cy="65" r="14" fill="#1b4332" stroke="#52b788"/>
+                        <text x="110" y="67" fill="#d8f3dc" font-size="5" text-anchor="middle">NIT</text>
+                        <animateTransform attributeName="transform" type="translate" values="0,0; 30,12; 0,0" dur="2.5s" repeatCount="indefinite"/>
+                    </g>
+                    <g>
+                        <circle cx="290" cy="65" r="14" fill="#1b4332" stroke="#52b788"/>
+                        <text x="290" y="67" fill="#d8f3dc" font-size="5" text-anchor="middle">Pasundan</text>
+                        <animateTransform attributeName="transform" type="translate" values="0,0; -30,12; 0,0" dur="2.5s" repeatCount="indefinite"/>
+                    </g>
+                    <g>
+                        <circle cx="200" cy="165" r="14" fill="#1b4332" stroke="#52b788"/>
+                        <text x="200" y="167" fill="#d8f3dc" font-size="5" text-anchor="middle">Sumatra</text>
+                        <animateTransform attributeName="transform" type="translate" values="0,0; 0,-24; 0,0" dur="2.5s" repeatCount="indefinite"/>
+                    </g>
+                    <text x="200" y="200" fill="#ffd166" font-size="8" font-family="'Cinzel', serif" font-weight="bold" text-anchor="middle">17 AGUSTUS 1950 • PROKLAMASI PEMBUBARAN RIS</text>
+                </svg>
+            """
+        },
+        7: {
+            "title": "DEMOKRASI LIBERAL: KRONIK JATUH BANGUN KABINET",
+            "tag": "INSTABILITAS SISTEM PARLEMENTER",
+            "badge_color": "#f4a261",
+            "time": "1950 - 1959 (UUDS 1950)",
+            "desc": "Simulasi rotasi 7 kabinet dalam 9 tahun akibat mosi tidak percaya di parlemen yang menghambat stabilitas nasional.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#1d2d44"/>
+                    <!-- Roda Gerigi Berputar Kabinet -->
+                    <g transform="translate(130, 95)">
+                        <circle cx="0" cy="0" r="45" fill="none" stroke="#ffd166" stroke-width="4" stroke-dasharray="14 10">
+                            <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="12s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="0" cy="0" r="28" fill="#0d1b2a" stroke="#e63946" stroke-width="2"/>
+                        <text x="0" y="3" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">7 KABINET</text>
+                    </g>
+                    <!-- Info Pemilu 1955 -->
+                    <rect x="230" y="45" width="130" height="100" rx="8" fill="#0d1b2a" stroke="#06d6a0" stroke-width="1.8"/>
+                    <text x="295" y="70" fill="#06d6a0" font-size="8" font-weight="bold" text-anchor="middle">PEMILU 1955</text>
+                    <line x1="245" y1="80" x2="345" y2="80" stroke="#415a77" stroke-width="1"/>
+                    <text x="295" y="98" fill="#e2e8f0" font-size="6.5" text-anchor="middle">Prestasi Terbesar:</text>
+                    <text x="295" y="112" fill="#ffd166" font-size="6.5" text-anchor="middle">Pemilu Paling Jujur</text>
+                    <text x="295" y="128" fill="#a8dadc" font-size="6" text-anchor="middle">PNI, Masyumi, NU, PKI</text>
+                    <text x="200" y="195" fill="#f1faee" font-size="7.5" text-anchor="middle">RATA-RATA USIA KABINET HANYA BERTAHAN 1 TAHUN</text>
+                </svg>
+            """
+        },
+        8: {
+            "title": "TITIK BALIK KRUSIAL: DEKRIT PRESIDEN 5 JULI 1959",
+            "tag": "PENYELAMATAN NEGARA DARURAT",
+            "badge_color": "#e63946",
+            "time": "5 JULI 1959 • 17.00 WIB",
+            "desc": "Simulasi pembacaan titah sakral Presiden Soekarno membubarkan Konstituante dan mengumumkan kembali berlakunya UUD 1945.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#2b0908"/>
+                    <circle cx="200" cy="100" r="85" fill="#e63946" opacity="0.15">
+                        <animate attributeName="r" values="70;95;70" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <!-- Lembar Dekrit dengan Segel Lilin Merah Menyala -->
+                    <g transform="translate(135, 25)">
+                        <rect x="0" y="0" width="130" height="145" rx="5" fill="#fefae0" stroke="#ffd166" stroke-width="2.5"/>
+                        <line x1="20" y1="25" x2="110" y2="25" stroke="#9d0208" stroke-width="3"/>
+                        <line x1="25" y1="40" x2="105" y2="40" stroke="#333333" stroke-width="1.5"/>
+                        <line x1="20" y1="52" x2="110" y2="52" stroke="#333333" stroke-width="1.5"/>
+                        <line x1="20" y1="64" x2="110" y2="64" stroke="#333333" stroke-width="1.5"/>
+                        <line x1="20" y1="76" x2="90" y2="76" stroke="#333333" stroke-width="1.5"/>
+                        <circle cx="65" cy="110" r="16" fill="#d90429"/>
+                        <path d="M58 110 L63 115 L73 103" stroke="#ffffff" stroke-width="2.5" fill="none"/>
+                    </g>
+                    <text x="200" y="195" fill="#ffd166" font-size="8.5" font-family="'Cinzel', serif" font-weight="bold" text-anchor="middle">KEMBALI KE UUD 1945 ATAS DASAR STAATSNOODRECHT</text>
+                </svg>
+            """
+        },
+        9: {
+            "title": "DEMOKRASI TERPIMPIN: SENTRALISME ORDE LAMA",
+            "tag": "ANALISIS PENYIMPANGAN HUKUM",
+            "badge_color": "#e63946",
+            "time": "1959 - 1966",
+            "desc": "Simulasi pemusatan kekuasaan eksekutif, pembubaran parlemen hasil pemilu, dan doktrin Nasakom / Manipol USDEK.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#1a0000"/>
+                    <!-- Piramida Sentralistik -->
+                    <polygon points="200,30 110,165 290,165" fill="#370617" stroke="#e63946" stroke-width="2"/>
+                    <!-- Puncak Kekuasaan -->
+                    <circle cx="200" cy="50" r="12" fill="#ffd166"/>
+                    <text x="200" y="53" fill="#000000" font-size="6" font-weight="bold" text-anchor="middle">PEMIMPIN</text>
+                    <!-- Pilar Bawah Tersubordinasi -->
+                    <rect x="135" y="105" width="40" height="20" rx="3" fill="#6a040f"/>
+                    <text x="155" y="117" fill="#ffffff" font-size="5" text-anchor="middle">MPRS</text>
+                    <rect x="180" y="105" width="40" height="20" rx="3" fill="#6a040f"/>
+                    <text x="200" y="117" fill="#ffffff" font-size="5" text-anchor="middle">DPR-GR</text>
+                    <rect x="225" y="105" width="40" height="20" rx="3" fill="#6a040f"/>
+                    <text x="245" y="117" fill="#ffffff" font-size="5" text-anchor="middle">MA</text>
+                    <!-- Garis Peringatan Penyimpangan -->
+                    <text x="200" y="150" fill="#ffd166" font-size="6.5" font-weight="bold" text-anchor="middle">TAP MPRS No. III/1963</text>
+                    <text x="200" y="195" fill="#ffb703" font-size="7.5" text-anchor="middle">SUBORDINASI LEMBAGA TINGGI NEGARA DI BAWAH EKSEKUTIF</text>
+                </svg>
+            """
+        },
+        10: {
+            "title": "ORDE BARU: HEGEMONI EKSEKUTIF 32 TAHUN",
+            "tag": "SAKRALISASI & EXECUTIVE HEAVY",
+            "badge_color": "#d4a373",
+            "time": "1966 - 1998",
+            "desc": "Simulasi doktrin stabilisasi politik, penataran P4/BP-7, fusi partai politik, dan hegemoni kekuasaan yang terkunci rapat.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#1b1d28"/>
+                    <!-- Gembok Raksasa Sakralisasi UUD 1945 -->
+                    <g transform="translate(170, 35)">
+                        <path d="M15 50 V25 C15 5 45 5 45 25 V50" fill="none" stroke="#ffd166" stroke-width="6"/>
+                        <rect x="0" y="45" width="60" height="55" rx="6" fill="#343a40" stroke="#ffd166" stroke-width="2"/>
+                        <circle cx="30" cy="70" r="6" fill="#ffd166"/>
+                        <line x1="30" y1="74" x2="30" y2="85" stroke="#ffd166" stroke-width="3"/>
+                    </g>
+                    <!-- 3 Fraksi Hasil Fusi -->
+                    <rect x="70" y="130" width="60" height="24" rx="4" fill="#2b9348"/>
+                    <text x="100" y="145" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle">PPP</text>
+                    <rect x="170" y="125" width="60" height="30" rx="4" fill="#ffb703"/>
+                    <text x="200" y="143" fill="#000000" font-size="7.5" font-weight="bold" text-anchor="middle">GOLKAR</text>
+                    <rect x="270" y="130" width="60" height="24" rx="4" fill="#d90429"/>
+                    <text x="300" y="145" fill="#ffffff" font-size="6.5" font-weight="bold" text-anchor="middle">PDI</text>
+                    <text x="200" y="195" fill="#ffd166" font-size="7.5" text-anchor="middle">UU NO. 5/1985 TENTANG REFERENDUM MENYAKRALKAN UUD</text>
+                </svg>
+            """
+        },
+        11: {
+            "title": "GELOMBANG REFORMASI: 4 TAHAP AMANDEMEN",
+            "tag": "TRANSFORMASI KONSTITUSI MODERN",
+            "badge_color": "#06d6a0",
+            "time": "1999 - 2002 (SIDANG UMUM/TAHUNAN MPR)",
+            "desc": "Simulasi pembaruan 4 etape konstitusi secara bertahap menjaga keutuhan Pembukaan dan bentuk NKRI.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#0b092b"/>
+                    <!-- Diagram 4 Etape Amandemen -->
+                    <g transform="translate(45, 90)">
+                        <circle cx="40" cy="0" r="22" fill="#1d3557" stroke="#e63946" stroke-width="2.5"/>
+                        <text x="40" y="-3" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">TAHAP I</text>
+                        <text x="40" y="9" fill="#ffd166" font-size="6" text-anchor="middle">1999</text>
+                        <line x1="62" y1="0" x2="108" y2="0" stroke="#ffd166" stroke-width="2" stroke-dasharray="4 2"/>
+                        <circle cx="130" cy="0" r="22" fill="#1d3557" stroke="#ffd166" stroke-width="2.5"/>
+                        <text x="130" y="-3" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">TAHAP II</text>
+                        <text x="130" y="9" fill="#ffd166" font-size="6" text-anchor="middle">2000</text>
+                        <line x1="152" y1="0" x2="198" y2="0" stroke="#ffd166" stroke-width="2" stroke-dasharray="4 2"/>
+                        <circle cx="220" cy="0" r="22" fill="#1d3557" stroke="#06d6a0" stroke-width="2.5"/>
+                        <text x="220" y="-3" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">TAHAP III</text>
+                        <text x="220" y="9" fill="#ffd166" font-size="6" text-anchor="middle">2001</text>
+                        <line x1="242" y1="0" x2="288" y2="0" stroke="#ffd166" stroke-width="2" stroke-dasharray="4 2"/>
+                        <circle cx="310" cy="0" r="22" fill="#1d3557" stroke="#3a86ff" stroke-width="2.5"/>
+                        <text x="310" y="-3" fill="#ffffff" font-size="7" font-weight="bold" text-anchor="middle">TAHAP IV</text>
+                        <text x="310" y="9" fill="#ffd166" font-size="6" text-anchor="middle">2002</text>
+                    </g>
+                    <text x="200" y="185" fill="#ffd166" font-size="8" font-family="'Cinzel', serif" font-weight="bold" text-anchor="middle">DARI 37 PASAL MENJADI 73 PASAL & ADENDUM RESMI</text>
+                </svg>
+            """
+        },
+        12: {
+            "title": "LEMBAGA BARU: MAHKAMAH KONSTITUSI & DPD RI",
+            "tag": "CHECK AND BALANCES HORIZONTAL",
+            "badge_color": "#3a86ff",
+            "time": "PASCA AMANDEMEN 2002",
+            "desc": "Simulasi kesetaraan cabang kekuasaan trias politika modern dilengkapi Mahkamah Konstitusi sebagai penjaga gawang konstitusi.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#03071e"/>
+                    <!-- Segitiga Keseimbangan Lembaga -->
+                    <circle cx="200" cy="50" r="24" fill="#370617" stroke="#ffd166" stroke-width="2"/>
+                    <text x="200" y="48" fill="#ffd166" font-size="6" font-weight="bold" text-anchor="middle">PRESIDEN</text>
+                    <text x="200" y="58" fill="#ffffff" font-size="5" text-anchor="middle">Max 2 Periode</text>
+                    <circle cx="95" cy="140" r="24" fill="#1d3557" stroke="#06d6a0" stroke-width="2"/>
+                    <text x="95" y="138" fill="#06d6a0" font-size="6" font-weight="bold" text-anchor="middle">DPR & DPD</text>
+                    <text x="95" y="148" fill="#ffffff" font-size="5" text-anchor="middle">Bikameral</text>
+                    <circle cx="305" cy="140" r="24" fill="#1d3557" stroke="#3a86ff" stroke-width="2"/>
+                    <text x="305" y="138" fill="#3a86ff" font-size="6" font-weight="bold" text-anchor="middle">MK & MA & KY</text>
+                    <text x="305" y="148" fill="#ffffff" font-size="5" text-anchor="middle">Judicial Power</text>
+                    <!-- Garis Hubungan Timbal Balik -->
+                    <line x1="180" y1="65" x2="115" y2="120" stroke="#ffd166" stroke-width="1.5" stroke-dasharray="3 2"/>
+                    <line x1="220" y1="65" x2="285" y2="120" stroke="#ffd166" stroke-width="1.5" stroke-dasharray="3 2"/>
+                    <line x1="120" y1="140" x2="280" y2="140" stroke="#ffd166" stroke-width="1.5" stroke-dasharray="3 2"/>
+                    <text x="200" y="195" fill="#a8dadc" font-size="7.5" text-anchor="middle">TIDAK ADA LAGI LEMBAGA TERTINGGI NEGARA • SEJAJAR HORIZONTAL</text>
+                </svg>
+            """
+        },
+        13: {
+            "title": "TATA KELOLA KONTEMPORER: INDEPENDENSI & RUANG DIGITAL",
+            "tag": "TANTANGAN ERA MODERN",
+            "badge_color": "#ff006e",
+            "time": "ERA DISRUPSI DIGITAL & POLITIK",
+            "desc": "Simulasi tantangan menjaga benteng independensi peradilan di tengah arus polarisasi siber dan tuntutan partisipasi bermakna.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="210" fill="#0b091a"/>
+                    <!-- Jaring Gelombang Digital / Cyber Network -->
+                    <path d="M20 100 Q100 40 200 100 T380 100" stroke="#3a86ff" stroke-width="2" fill="none" opacity="0.4"/>
+                    <path d="M20 120 Q100 180 200 120 T380 120" stroke="#ff006e" stroke-width="2" fill="none" opacity="0.4"/>
+                    <!-- Perisai Perlindungan Konstitusi -->
+                    <g transform="translate(170, 40)">
+                        <path d="M30 10 L60 20 V60 C60 90 30 110 30 110 C30 110 0 90 0 60 V20 Z" fill="#1d3557" stroke="#ffd166" stroke-width="3"/>
+                        <circle cx="30" cy="50" r="14" fill="#ffd166"/>
+                        <text x="30" y="53" fill="#000000" font-size="6" font-weight="bold" text-anchor="middle">MK</text>
+                    </g>
+                    <!-- Satelit Tantangan -->
+                    <rect x="35" y="75" width="95" height="30" rx="4" fill="#161a2e" stroke="#06d6a0" stroke-width="1.5"/>
+                    <text x="82" y="93" fill="#06d6a0" font-size="5.5" font-weight="bold" text-anchor="middle">Public Participation</text>
+                    <rect x="270" y="75" width="95" height="30" rx="4" fill="#161a2e" stroke="#ff006e" stroke-width="1.5"/>
+                    <text x="317" y="93" fill="#ff006e" font-size="5.5" font-weight="bold" text-anchor="middle">Etika & Polarisasi</text>
+                    <text x="200" y="185" fill="#ffd166" font-size="7.5" text-anchor="middle">MENJAGA MURWAH THE GUARDIAN OF CONSTITUTION</text>
+                </svg>
+            """
+        },
+        14: {
+            "title": "REFLEKSI PANCASILA: MENUJU INDONESIA EMAS 2045",
+            "tag": "SINTESIS FINAL KELOMPOK",
+            "badge_color": "#ffd166",
+            "time": "1945 - 2045 (100 TAHUN MERDEKA)",
+            "desc": "Simulasi harmoni 5 Bintang Pancasila yang bersinar menopang Konstitusi UUD 1945 menuju satu abad kemerdekaan Indonesia.",
+            "svg": """
+                <svg viewBox="0 0 400 210" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#ffd166" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#ffd166" stop-opacity="0"/>
+                    </radialGradient>
+                    <rect width="400" height="210" fill="#070a1e"/>
+                    <circle cx="200" cy="95" r="80" fill="url(#goldGlow)"/>
+                    <!-- Bintang Emas Utama -->
+                    <polygon points="200,45 208,68 232,68 213,82 220,105 200,91 180,105 187,82 168,68 192,68" fill="#ffd166" filter="drop-shadow(0 0 10px #ffd166)">
+                        <animateTransform attributeName="transform" type="scale" values="1;1.08;1" origin="200 95" dur="3s" repeatCount="indefinite"/>
+                    </polygon>
+                    <!-- Teks Sumpah Integritas Mahasiswa -->
+                    <text x="200" y="145" fill="#ffffff" font-size="10" font-family="'Cinzel', serif" font-weight="bold" text-anchor="middle" letter-spacing="1">INDONESIA EMAS 2045</text>
+                    <text x="200" y="165" fill="#a8dadc" font-size="6.5" text-anchor="middle">Konstitusi yang Hidup Adalah Konstitusi yang Diamalkan</text>
+                    <text x="200" y="195" fill="#e63946" font-size="8" font-weight="bold" text-anchor="middle">SEKIAN & TERIMA KASIH • SESI TANYA JAWAB</text>
+                </svg>
+            """
+        }
+    }
+    
+    v = videos.get(slide_id, videos[0])
+    
+    return f'''
+        <div style="background: rgba(16, 29, 66, 0.7); border: 1px solid rgba(255, 209, 102, 0.35); border-radius: 14px; padding: 16px; margin-top: 18px; box-shadow: 0 10px 25px rgba(0,0,0,0.4);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="background: {v['badge_color']}; color: #ffffff; font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.8px;">
+                    ▶️ {v['tag']}
+                </span>
+                <span style="color: #ffd166; font-size: 0.75rem; font-weight: 700;">
+                    ⏱️ {v['time']}
+                </span>
+            </div>
+            <div style="width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #000000; line-height: 0;">
+                {v['svg']}
+            </div>
+            <div style="margin-top: 10px;">
+                <p style="color: #ffffff; font-size: 0.88rem; font-weight: 700; margin: 0 0 4px 0; font-family: 'Cinzel', serif;">
+                    🎬 {v['title']}
+                </p>
+                <p style="color: #a8dadc; font-size: 0.78rem; margin: 0; line-height: 1.5;">
+                    {v['desc']}
+                </p>
+            </div>
+        </div>
+    '''
+
+
 # 15 Slides Definition
 SLIDES = [
     {
@@ -1537,6 +2053,9 @@ elif curr["id"] == 14:
                 </div>
             </div>
         """)
+
+# REPLIKA VIDEO ANIMASI UNTUK SETIAP SLIDE (15 SLIDE)
+render_html(get_replica_video_card(curr["id"]))
 
 render_html('</div>') # End slide-wrapper
 
