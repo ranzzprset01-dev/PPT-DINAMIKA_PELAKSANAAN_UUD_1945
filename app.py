@@ -606,7 +606,7 @@ with st.sidebar:
     st.markdown("---")
     
     # Team Roster in Sidebar
-    st.markdown("""
+    render_html("""
         <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px;">
             <p style="color: #ffd166; font-size: 0.82rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">👥 Anggota Kelompok:</p>
             <ol style="color: #f1faee; font-size: 0.78rem; padding-left: 18px; margin: 0; line-height: 1.8;">
@@ -626,7 +626,7 @@ with st.sidebar:
     st.session_state.show_notes = st.toggle("🎙️ Tampilkan Catatan Presenter", value=st.session_state.show_notes)
     
     # Quick Timeline Jump
-    st.markdown("<p style='font-size: 0.8rem; font-weight: 700; color: #a8dadc; margin-top: 10px;'>⚡ Pintasan Periode:</p>")
+    render_html("<p style='font-size: 0.8rem; font-weight: 700; color: #a8dadc; margin-top: 10px;'>⚡ Pintasan Periode:</p>")
     col_sb1, col_sb2 = st.columns(2)
     with col_sb1:
         if st.button("🇮🇩 1945-1949", use_container_width=True):
